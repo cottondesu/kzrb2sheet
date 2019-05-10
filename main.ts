@@ -36,9 +36,9 @@ function getEventTitle(event: any) {
 
 function getEventContent(event: any, url: string) {
     // meetup41以前のイベント内容を除外
-    const EVENT_CONTENTS_EXCLUSION_AFTER_MEETUP = 41;
+    const EVENT_CONTENTS_EXCLUSION_BEFORE_MEETUP = 41;
     let eventName = "";
-    if (event.match(/\d{1,2}/) > EVENT_CONTENTS_EXCLUSION_AFTER_MEETUP) {
+    if (event.match(/\d{1,2}/) > EVENT_CONTENTS_EXCLUSION_BEFORE_MEETUP) {
         let respSubObj = UrlFetchApp.fetch(`${url}${event.match(/\/([\d]*)\//g)}`);
         let contentHtml = respSubObj.getContentText("UTF-8");
         let eventTitle = contentHtml.match(/<p>([\s\S]*?)<\/p>/g);
